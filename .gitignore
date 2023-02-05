@@ -25,11 +25,10 @@ composer.phar
 /updates/*
 
 # ignore packages folder
-/packages/*
 /concrete/packages/*
 
 # more stuff
-/application/languages/*
+#/application/languages/*
 /coverage.clover
 
 # ignore sitemap.xml
