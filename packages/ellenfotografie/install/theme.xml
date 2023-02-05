@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+    <themes>
+        <theme handle="ellenfotografie" package="ellenfotografie" activated="1">
+            <name><![CDATA[Ellen Fotografie]]></name>
+        </theme>
+
+    </themes>
+</concrete5-cif>
