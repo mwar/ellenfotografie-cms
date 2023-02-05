@@ -470,10 +470,13 @@ class Connection extends \Doctrine\DBAL\Connection
             $supportedCollations = [];
             $rs = $this->executeQuery('SHOW COLLATION');
             while (($row = $rs->fetch(PDO::FETCH_ASSOC)) !== false) {
-                if (!isset($row['Collation']) || !array_key_exists('Charset', $row)) {
-                    throw new Exception(t('Unrecognized result of the "%s" database query.', 'SHOW COLLATION'));
+                if (!isset($row['Collation']) || !isset($row['Charset'])) {
+                    continue;
                 }
-                $supportedCollations[strtolower($row['Collation'])] = strtolower($row['Charset'] ?? '');
+                $supportedCollations[strtolower($row['Collation'])] = strtolower($row['Charset']);
+            }
+            if (empty($supportedCollations)) {
+                throw new Exception(t('Unrecognized result of the "%s" database query.', 'SHOW COLLATION'));
             }
             $this->supportedCollations = $supportedCollations;
         }
